@@ -15,8 +15,7 @@ namespace Q.Examples
     class Program
     {
         private static HttpClient client = new HttpClient();
-        private static string _token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYzc0ZGY4YS1mZjA5LTRjOWUtYjQ5Ny1kMzkxNTQxMWE3ZGEiLCJuYW1lIjoic3ZlbkBoZWxsb2hxLmlvIiwiaWlkIjoiYmM3NGRmOGEtZmYwOS00YzllLWI0OTctZDM5MTU0MTFhN2RhIiwidGlkIjoiNzgzNjBlMTEtNjdiOS1lNzExLTgwYzItMDAxN2ZhMTAwMzliIiwidWlkIjoiNmU4MmM3MGYtN2RiOS1lNzExLTgwYzItMDAxN2ZhMTAwMzliIiwidG9rZW5fdXNhZ2UiOiJhY2Nlc3NfdG9rZW4iLCJqdGkiOiI2NjdkMzVjOS03MDAyLTRlMTUtOTE2Mi00MzZiMTU2NDQwZWQiLCJjZmRfbHZsIjoicHJpdmF0ZSIsImF1ZCI6Im15SFEuaW8iLCJhenAiOiJteVEgZXhhbXBsZXMiLCJuYmYiOjE1MTk5MjI3MTAsImV4cCI6MTUyMDAwOTExMCwiaWF0IjoxNTE5OTIyNzEwLCJpc3MiOiJodHRwczovL215aHEuaW8vIn0.SpufaQYGxeVQvNbswrjUYM-gAlbAAqMhxC_T-wR1ngY";
-
+        private static string _token = "access_token";
 
         static void Main(string[] args)
         {
