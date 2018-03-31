@@ -23,19 +23,20 @@ namespace Q.Examples
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("authorization", $"Bearer {_token}");
 
-            PrintNote("==> First of all => Get users of your team");
+            PrintNote("==> First example => Get users of your team");
             var users = GetEntities<QUsers>($"https://api.myHQ.io/api/v1/users");
 
-            PrintNote("==> Next step, filter users");
-            var allJamies = GetEntities<QUsers>($"https://api.myHQ.io/api/v1/users?filterby=FirstName eq 'Jimmie'");
+            PrintNote("==> Next step, filter examples");
+            var allJamies = GetEntities<QUsers>($"https://api.myHQ.io/api/v1/users?filterby=FirstName eq 'Jamie'");
 
             PrintNote("==> Next step, filter users which have birthday in february");
-            var  birthdays = GetEntities<QUsers>($"https://api.myHQ.io/api/v1/users?filterby=BirthDate le datetime'{new DateTime(2018,2,1).ToString("s")}' and BirthDate ge datetime'{new DateTime(2018, 3, 1).AddDays(-1).ToString("s")}'");
+            var birthdays = GetEntities<QUsers>($"https://api.myHQ.io/api/v1/users?filterby=BirthDate le datetime'{new DateTime(2018, 2, 1).ToString("s")}' and BirthDate ge datetime'{new DateTime(2018, 3, 1).AddDays(-1).ToString("s")}'");
 
             PrintNote("#########################################");
             PrintNote("Start with a more complex example");
             PrintNote("==> Create your first project.");
 
+            // in every case, we check if the entity exist first.
             PrintNote("==> Check if the project status exist, else create a new.");
             var projectStatus = GetEntities<DefaultResponseObject>("https://api.myHQ.io/api/v1/projectstatuses?filterby=Name eq 'KickOff'").FirstOrDefault();
             if (projectStatus == null)
@@ -60,7 +61,6 @@ namespace Q.Examples
                 }";
 
                 projectType = Create<DefaultResponseObject>("https://api.myHQ.io/api/v1/projecttypes", projectTypePostModel);
-
             }
 
             PrintNote("==> Check if status is linked to type, else link.");
@@ -79,17 +79,17 @@ namespace Q.Examples
             string internalProjectPostModel = $@"{{
                 ""name"": ""Space-Project"",
                 ""description"": ""Top Secret Mission"",
-                ""startDate"": ""2018-03-01T16:16:32.0450375Z"",
-                ""dueDate"": ""2018-03-15T16:16:32.0450377Z"",
+                ""startDate"": ""2018-04-03T16:16:32.0450375Z"",
+                ""dueDate"": ""2018-04-03T16:16:32.0450377Z"",
                 ""projectTypeId"": ""{projectType.Id.ToString()}"",
                 ""timeBudget"": 5,
                 ""projectStatusId"": ""{projectStatus.Id.ToString()}""
             }}";
 
             DefaultResponseObject newProject = Create<DefaultResponseObject>("https://api.myHQ.io/api/v1/projects", internalProjectPostModel);
+
             PrintNote($"Awesome😎 just create the new project {newProject}.");
-
-
+            
             PrintNote($"==> Time to leaf a comment on your new project");
             string commentPostModel = @"{
                 ""message"": ""🚀 Start with my mission 👽""               
@@ -112,7 +112,7 @@ namespace Q.Examples
         {
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(message); 
+            Console.WriteLine(message);
             Console.ResetColor();
         }
 
